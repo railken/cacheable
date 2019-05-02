@@ -21,8 +21,6 @@ composer require railken/cacheable
 
 Add the `CacheableTrait` and `CacheableContract` in the class you wish to cache
 ```php
-<?php
-
 use Railken\Cacheable\CacheableTrait;
 use Railken\Cacheable\CacheableContract;
 
@@ -45,7 +43,6 @@ class Foo implements CacheableContract
 Now you can play with the method
 
 ```php
-<?php
 $foo = new Foo();
 $foo->sumCached(2, 8); // 10
 
