@@ -8,5 +8,4 @@ interface CacheableContract
      * @return Cacheable
      */
     public static function cacheable(): Cacheable;
-
 }

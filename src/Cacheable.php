@@ -31,7 +31,7 @@ class Cacheable
         $name = $this->name(get_class($obj), $method, $args);
         $method = $this->parseMethod($method);
 
-        $closure = function() use ($method, $args, $obj) {
+        $closure = function () use ($method, $args, $obj) {
             return $obj->$method(...$args);
         };
 
@@ -53,7 +53,7 @@ class Cacheable
         $name = $this->name($class, $method, $args);
         $method = $this->parseMethod($method);
 
-        $closure = function() use ($method, $args, $class) {
+        $closure = function () use ($method, $args, $class) {
             return $class::$method(...$args);
         };
 
@@ -100,7 +100,7 @@ class Cacheable
 
     /**
      * Calculate the key cache
-     * 
+     *
      * @param string $class
      * @param string $method
      * @param array $args
@@ -111,5 +111,4 @@ class Cacheable
     {
         return sprintf("%s::%s::%s", $class, $method, serialize($args));
     }
-
 }
