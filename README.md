@@ -2,12 +2,12 @@
 
 [![Build Status](https://travis-ci.org/railken/cacheable.svg?branch=master)](https://travis-ci.org/railken/cacheable)
 
-This library give you the ability to call any method with a suffix `Cached` to retrieve a Cached result of the methods. This is comes in handy when you have a really time consuming method and the result should always be the same given the same parameters
+This library give you the ability to call any method with a suffix `Cached` to retrieve a Cached result of the methods. This comes in handy when you have a really time consuming method and the result is always be the same given the same parameters
 
 # Requirements
 
-PHP 7.1 and later.
-Laravel
+- PHP 7.1 and later
+- Laravel
 
 ## Installation
 
@@ -28,20 +28,29 @@ use Railken\Cacheable\CacheableContract;
 
 class Foo implements CacheableContract
 {
-	use CacheableTrait;
+  use CacheableTrait;
 
-	public function sum(int $x, int $y): int
-	{
-		return $x + $y;
-	}
+  public function sum(int $x, int $y): int
+  {
+      return $x + $y;
+  }
+
+  public function random(): string
+  {
+      return str_random(10);
+  }
 }
 
 ```
-Now you can get the result cached!
+Now you can play with the method
 
 ```php
 <?php
 $foo = new Foo();
 $foo->sumCached(2, 8); // 10
 
+$foo->randomCached(); // Return always the same string
+
 ```
+
+In order to cleanup the cache simply run `php artisan cache:clean`
