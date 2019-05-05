@@ -3,6 +3,7 @@
 namespace Railken\Cacheable;
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 use Closure;
 
 class Cacheable
@@ -85,6 +86,7 @@ class Cacheable
         return preg_replace('/Cached$/', '', $method);
     }
 
+
     /**
      * Remember the function
      *
@@ -95,7 +97,15 @@ class Cacheable
      */
     public function remember(string $name, Closure $closure)
     {
-        return Cache::rememberForever($name, $closure);
+        if (Redis::exists($name)) {
+            return unserialize(Redis::get($name));
+        }
+
+        $value = $closure();
+
+        Redis::set($name, serialize($value));
+
+        return $value;
     }
 
     /**
@@ -109,6 +119,24 @@ class Cacheable
      */
     public function name(string $class, string $method, array $args = []): string
     {
-        return sprintf("%s::%s::%s", $class, $method, serialize($args));
+        return sprintf("%s::%s::%s", $class, $method, $this->serializeArgs($args));
+    }
+
+    /**
+     * Serialize args
+     *
+     * @param array $args
+     *
+     * @return string
+     */
+    public function serializeArgs(array $args = [])
+    {
+        return base64_encode(serialize(array_map(function ($item) {
+            if ($item instanceof \Illuminate\Database\Eloquent\Model) {
+                return ['model' => get_class($item), 'id' => $item->id];
+            }
+
+            return $item;
+        }, $args)));
     }
 }
