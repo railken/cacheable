@@ -12,7 +12,7 @@ trait CacheableTrait
      *
      * @return mixed
      */
-    public static function __callStatic(string $method, array $args = [])
+    public static function __callStatic($method, $args = [])
     {
         $cacheable = self::cacheable();
 
@@ -29,7 +29,7 @@ trait CacheableTrait
      *
      * @return mixed
      */
-    public function __call(string $method, array $args = [])
+    public function __call($method, $args = [])
     {
         $cacheable = self::cacheable();
 
