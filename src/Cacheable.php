@@ -97,6 +97,10 @@ class Cacheable
      */
     public function remember(string $name, Closure $closure)
     {
+        if (!class_exists(\Predis\Client::class)) {
+            return Cache::rememberForever($name, $closure);
+        }
+        
         if (Redis::exists($name)) {
             return unserialize(Redis::get($name));
         }
