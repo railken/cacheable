@@ -11,7 +11,7 @@ class Foo implements CacheableContract
 
     public function getRandomString(): string
     {
-        return str_random(40);
+        return md5(microtime(true));
     }
 
     public function getConstantString(): string

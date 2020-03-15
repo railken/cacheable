@@ -17,6 +17,6 @@ class CacheableTest extends BaseTest
 
         $cacheKey = $foo::cacheable()->name(get_class($foo), 'sumCached', [2, 8]);
 
-        $this->assertEquals("Railken\Cacheable\Tests\Foo::sumCached::a:2:{i:0;i:2;i:1;i:8;}", $cacheKey);
+        $this->assertEquals("Railken\Cacheable\Tests\Foo::sumCached::YToyOntpOjA7aToyO2k6MTtpOjg7fQ==", $cacheKey);
     }
 }
