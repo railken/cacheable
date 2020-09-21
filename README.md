@@ -1,6 +1,6 @@
 # Cacheable
 
-[![Build Status](https://travis-ci.org/railken/cacheable.svg?branch=master)](https://travis-ci.org/railken/cacheable)
+[![Actions Status](https://github.com/railken/cacheable/workflows/Test/badge.svg)](https://github.com/railken/cacheable/actions)
 
 This library give you the ability to call any method with a suffix `Cached` to retrieve a Cached result of the methods. This comes in handy when you have a really time consuming method and the result is always be the same given the same parameters
 
