@@ -2,7 +2,7 @@
 
 namespace Railken\Cacheable\Tests;
 
-class CacheableTest extends BaseTest
+class CacheableTest extends Base
 {
     public function testFoo()
     {
