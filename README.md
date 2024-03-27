@@ -6,7 +6,7 @@ This library give you the ability to call any method with a suffix `Cached` to r
 
 # Requirements
 
-- PHP 7.1 and later
+- PHP 8.1 and later
 - Laravel
 
 ## Installation
