@@ -15,7 +15,7 @@ class Cacheable
      */
     public static function make(): Cacheable
     {
-        return new self;
+        return new self();
     }
 
     /**
